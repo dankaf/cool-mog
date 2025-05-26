@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Westside LA Farmers Markets</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-sA+e2DEK0n1jTn26/9h1P6cZTIQcg3iu9l+QNJoZ+YA=" crossorigin=""/>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    #map { height: 500px; margin-bottom: 1em; }
+    .market-list { max-width: 800px; margin: 0 auto; }
+  </style>
+</head>
+<body>
+  <h1>Westside LA Farmers Markets</h1>
+  <div id="map"></div>
+  <div class="market-list">
+    <h2>Markets by Day</h2>
+    <ul>
+      <li><strong>Tuesday:</strong> Culver City Farmers Market, Manhattan Beach Farmers Market</li>
+      <li><strong>Wednesday:</strong> Santa Monica Downtown Farmers Market, Westchester Farmers Market (Westchester Park)</li>
+      <li><strong>Thursday:</strong> Westwood Village Farmers Market</li>
+      <li><strong>Saturday:</strong> Santa Monica Downtown Farmers Market, Santa Monica Pico Farmers Market, Playa Vista Farmers Market</li>
+      <li><strong>Sunday:</strong> Santa Monica Main Street Farmers Market, Brentwood Farmers Market, Mar Vista Farmers Market, West LA Farmers Market, Westchester Farmers Market (Downtown Triangle)</li>
+    </ul>
+  </div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-o9N1j7zbReG9FkbmkXtHJ7J8DVydk3UyTEo9g3yXkL0=" crossorigin=""></script>
+  <script>
+    const markets = [
+      {
+        name: "Culver City Farmers Market",
+        time: "Tue 2PM-7PM",
+        lat: 34.0211,
+        lon: -118.3956,
+        desc: "Main Street, Downtown Culver City"
+      },
+      {
+        name: "Manhattan Beach Farmers Market",
+        time: "Tue 11AM-3PM",
+        lat: 33.8847,
+        lon: -118.4109,
+        desc: "320 15th St, Manhattan Beach"
+      },
+      {
+        name: "Santa Monica Downtown Farmers Market (Wed)",
+        time: "Wed 8AM-1PM",
+        lat: 34.0166,
+        lon: -118.4966,
+        desc: "Arizona Ave & 3rd St, Santa Monica"
+      },
+      {
+        name: "Westchester Farmers Market (Westchester Park)",
+        time: "Wed 8:30AM-1:30PM",
+        lat: 33.9596,
+        lon: -118.4189,
+        desc: "7000 W Manchester Ave, Los Angeles"
+      },
+      {
+        name: "Westwood Village Farmers Market",
+        time: "Thu 12PM-5PM",
+        lat: 34.0591,
+        lon: -118.4452,
+        desc: "1030 Broxton Ave, Los Angeles"
+      },
+      {
+        name: "Santa Monica Downtown Farmers Market (Sat)",
+        time: "Sat 8AM-1PM",
+        lat: 34.0166,
+        lon: -118.4966,
+        desc: "Arizona Ave & 3rd St, Santa Monica"
+      },
+      {
+        name: "Santa Monica Pico Farmers Market",
+        time: "Sat 8AM-1PM",
+        lat: 34.0225,
+        lon: -118.4697,
+        desc: "Virginia Ave Park, Santa Monica"
+      },
+      {
+        name: "Playa Vista Farmers Market",
+        time: "Sat 9AM-2PM",
+        lat: 33.9759,
+        lon: -118.4194,
+        desc: "12775 W Millennium Dr, Playa Vista"
+      },
+      {
+        name: "Santa Monica Main Street Farmers Market",
+        time: "Sun 8:30AM-1:30PM",
+        lat: 34.0037,
+        lon: -118.4819,
+        desc: "2640 Main St, Santa Monica"
+      },
+      {
+        name: "Brentwood Farmers Market",
+        time: "Sun 9AM-2PM",
+        lat: 34.0492,
+        lon: -118.4743,
+        desc: "741 S Gretna Green Way, Brentwood"
+      },
+      {
+        name: "Mar Vista Farmers Market",
+        time: "Sun 9AM-2PM",
+        lat: 34.0008,
+        lon: -118.4331,
+        desc: "12198 Venice Blvd, Los Angeles"
+      },
+      {
+        name: "West LA Farmers Market",
+        time: "Sun 9AM-2PM",
+        lat: 34.0409,
+        lon: -118.4499,
+        desc: "1635 Purdue Ave, Los Angeles"
+      },
+      {
+        name: "Westchester Farmers Market (Downtown Triangle)",
+        time: "Sun 9AM-1PM",
+        lat: 33.9671,
+        lon: -118.3986,
+        desc: "6200 W 87th St, Los Angeles"
+      }
+    ];
+
+    const map = L.map('map').setView([34.02, -118.45], 11);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    markets.forEach(m => {
+      const marker = L.marker([m.lat, m.lon]).addTo(map);
+      marker.bindPopup(`<strong>${m.name}</strong><br>${m.time}<br>${m.desc}`);
+    });
+  </script>
+</body>
+</html>
