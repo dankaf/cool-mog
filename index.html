@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freebie Go</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-sA+e2jPR9psNUN/gIHM3K27a0SMwO5NubasQupYJ1ZI=" crossorigin=""/>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Freebie Go</h1>
+    <p>Points: <span id="points">0</span></p>
+
+    <div id="map"></div>
+
+    <form id="itemForm">
+        <h2>Add Free Item</h2>
+        <label>
+            Description:
+            <input type="text" id="description" required>
+        </label>
+        <label>
+            Latitude:
+            <input type="number" id="lat" step="any" required>
+        </label>
+        <label>
+            Longitude:
+            <input type="number" id="lng" step="any" required>
+        </label>
+        <button type="submit">Post Item</button>
+    </form>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-o9N1j/C4kO1tvk0uEVynbarIyqCqkGBybSe+Zs9ft0M=" crossorigin=""></script>
+    <script src="app.js"></script>
+</body>
+</html>
